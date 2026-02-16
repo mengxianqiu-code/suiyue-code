@@ -1,5 +1,3 @@
-
-
 export type PoemCategory = 'eve' | 'day' | 'nostalgia' | 'folk' | 'court' | 'lantern';
 
 export interface Poem {

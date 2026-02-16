@@ -1,5 +1,3 @@
-
-
 import { Poem, PoemCategory } from './types';
 
 export const POEM_CATEGORIES: { id: PoemCategory; labelEn: string; labelZh: string; descEn: string; descZh: string }[] = [
@@ -489,28 +487,6 @@ export const STATIC_POEMS: Poem[] = [
     translationCn: "去年元宵夜之时，花市上灯光明亮如同白昼... 今年元宵夜之时，月光与灯光同去年一样。却再也看不到去年的那个人..."
   }
 ];
-
-export const PROMPTS = {
-  en: `Generate a comprehensive literary analysis framework for the theme of "New Year" (Guo Nian) in Tang and Song poetry. 
-  
-  Please cover the following dimensions:
-  1. **Temporal Dimension**: How poets perceived the passage of time (e.g., waiting for the dawn on New Year's Eve).
-  2. **Spatial Dimension**: The contrast between the festive court/city and the lonely traveler's inn.
-  3. **Ritual & Imagery**: The symbolism of firecrackers, Tusu wine, and peach wood charms.
-  4. **Emotional Duality**: The interplay between celebration (joy, hope) and introspection (nostalgia, aging).
-
-  Format the output in Markdown.`,
-  
-  zh: `请生成一份关于唐宋诗词中“过年”主题的深度文学分析框架。
-
-  请涵盖以下维度：
-  1. **时间维度**：诗人对时光流逝的感知（如除夕守岁的紧迫感与元日新春的希望）。
-  2. **空间维度**：热闹的宫廷/市井与孤独的羁旅/客舍之间的强烈对比。
-  3. **仪式与意象**：爆竹、屠苏酒、桃符等核心意象的文化象征意义。
-  4. **情感二重性**：节庆欢愉与个人身世之感（如乡愁、伤老）的交织。
-
-  请使用 Markdown 格式输出。`
-};
 
 export const TRANSLATIONS = {
   en: {

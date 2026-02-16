@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Hero from './components/Hero';
 import PoemGallery from './components/PoemGallery';
@@ -39,8 +38,8 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#fdfbf7] flex flex-col">
-      {/* Navigation */}
-      <nav className={`sticky top-0 z-50 bg-[#fdfbf7]/80 backdrop-blur-md border-b border-stone-200 transition-all ${view === ViewState.HOME ? 'absolute w-full border-none bg-transparent' : ''}`}>
+      {/* Navigation - Added pt-[env(safe-area-inset-top)] for mobile status bars */}
+      <nav className={`sticky top-0 z-50 bg-[#fdfbf7]/80 backdrop-blur-md border-b border-stone-200 transition-all pt-[env(safe-area-inset-top)] ${view === ViewState.HOME ? 'absolute w-full border-none bg-transparent' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
            <div 
              className="flex items-center gap-2 cursor-pointer"
@@ -106,7 +105,7 @@ const App: React.FC = () => {
 
       {/* Footer */}
       {view !== ViewState.HOME && (
-        <footer className="border-t border-stone-200 py-8 text-center bg-stone-50">
+        <footer className="border-t border-stone-200 py-8 text-center bg-stone-50 pb-[env(safe-area-inset-bottom)]">
           <p className="text-stone-400 text-sm font-serif italic">
             {t.footerQuote}
           </p>
