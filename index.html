@@ -4,17 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <title>Suiyue | Literary Analysis</title>
+    <!-- Tailwind via CDN is acceptable for now -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- ERROR HANDLER -->
+    <script>
+      window.onerror = function(msg, url, line, col, error) {
+        if (msg.includes('ResizeObserver')) return;
+        alert('App Error: ' + msg + '\nLine: ' + line);
+        return false;
+      };
+      
+      window.addEventListener('unhandledrejection', function(event) {
+        alert('Async Error: ' + event.reason);
+      });
+    </script>
+
     <style>
       body {
         font-family: 'Noto Serif SC', serif;
         background-color: #fdfbf7;
         color: #1c1917;
-        /* Disable text selection for a more app-like feel */
         user-select: none;
         -webkit-user-select: none;
-        /* Ensure clicks remove highlight tap color */
         -webkit-tap-highlight-color: transparent;
       }
       .font-display {
@@ -48,7 +61,8 @@
     "path": "https://esm.sh/path@^0.12.7",
     "@capacitor/cli": "https://esm.sh/@capacitor/cli@^8.1.0",
     "fs": "https://esm.sh/fs@^0.0.1-security",
-    "url": "https://esm.sh/url@^0.11.4"
+    "url": "https://esm.sh/url@^0.11.4",
+    "@tarojs/taro": "https://esm.sh/@tarojs/taro@^4.1.11"
   }
 }
 </script>

@@ -37,9 +37,10 @@ const App: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#fdfbf7] flex flex-col">
-      {/* Navigation - Added pt-[env(safe-area-inset-top)] for mobile status bars */}
-      <nav className={`sticky top-0 z-50 bg-[#fdfbf7]/80 backdrop-blur-md border-b border-stone-200 transition-all pt-[env(safe-area-inset-top)] ${view === ViewState.HOME ? 'absolute w-full border-none bg-transparent' : ''}`}>
+    <div className="min-h-screen bg-[#fdfbf7] flex flex-col w-full overflow-hidden">
+      {/* Navigation */}
+      {/* Note: sticky works in MP but sometimes requires specific container setup. fixed is safer for overlays. */}
+      <div className={`z-50 bg-[#fdfbf7]/90 backdrop-blur-md border-b border-stone-200 transition-all w-full ${view === ViewState.HOME ? 'absolute top-0 left-0 border-none bg-transparent' : 'sticky top-0'}`}>
         <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
            <div 
              className="flex items-center gap-2 cursor-pointer"
@@ -74,10 +75,10 @@ const App: React.FC = () => {
              </button>
            </div>
         </div>
-      </nav>
+      </div>
 
       {/* Main Content */}
-      <main className="flex-grow">
+      <div className="flex-grow w-full">
         {view === ViewState.HOME && (
           <Hero 
             onStart={() => handleCategorySelect('all')} 
@@ -87,7 +88,7 @@ const App: React.FC = () => {
         )}
         
         {view === ViewState.GALLERY && (
-          <div className="animate-fade-in">
+          <div className="animate-fade-in pb-20">
             <PoemGallery 
               language={language} 
               selectedCategory={selectedCategory} 
@@ -97,22 +98,22 @@ const App: React.FC = () => {
         )}
         
         {view === ViewState.CHAT && (
-          <div className="animate-fade-in">
+          <div className="animate-fade-in pb-20">
             <LiteratureChat language={language} />
           </div>
         )}
-      </main>
+      </div>
 
       {/* Footer */}
       {view !== ViewState.HOME && (
-        <footer className="border-t border-stone-200 py-8 text-center bg-stone-50 pb-[env(safe-area-inset-bottom)]">
+        <div className="border-t border-stone-200 py-8 text-center bg-stone-50 pb-safe">
           <p className="text-stone-400 text-sm font-serif italic">
             {t.footerQuote}
           </p>
           <p className="text-stone-300 text-xs mt-2">
-            Powered by Gemini • React • Tailwind
+            Powered by Qwen • React • Taro
           </p>
-        </footer>
+        </div>
       )}
     </div>
   );

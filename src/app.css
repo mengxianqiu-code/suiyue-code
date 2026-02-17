@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Base Styles for Mini Program */
+page {
+  background-color: #fdfbf7;
+  font-family: 'Noto Serif SC', serif;
+  color: #1c1917;
+}
+
+/* Scrollbar hiding for clean UI */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}

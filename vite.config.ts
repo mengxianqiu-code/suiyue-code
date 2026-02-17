@@ -1,10 +1,14 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '');
+  const env = loadEnv(mode, (process as any).cwd(), '');
 
   return {
     plugins: [
@@ -22,22 +26,15 @@ export default defineConfig(({ mode }) => {
       outDir: 'dist',
       emptyOutDir: true,
       sourcemap: false,
-      chunkSizeWarningLimit: 2000, // 调整警告阈值为 2MB (2000kB)，消除警告
+      // Raise the warning limit to 2000KB (2MB) to suppress warnings
+      chunkSizeWarningLimit: 2000, 
       rollupOptions: {
         output: {
           manualChunks(id) {
-            // 更精细的自动分包策略
+            // Simplify splitting: put all node_modules into a single vendor file
+            // This is safer and prevents fragmentation for local apps
             if (id.includes('node_modules')) {
-              if (id.includes('react') || id.includes('react-dom')) {
-                return 'vendor-react';
-              }
-              if (id.includes('@google/genai')) {
-                return 'vendor-genai';
-              }
-              if (id.includes('lucide') || id.includes('markdown')) {
-                return 'vendor-ui';
-              }
-              return 'vendor-utils';
+              return 'vendor';
             }
           }
         }
@@ -46,6 +43,6 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 3000,
     },
-    base: './', // Use relative path for Android WebView compatibility
+    base: './', 
   };
 });
